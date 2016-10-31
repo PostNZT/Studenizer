@@ -10,7 +10,6 @@ student record sorter and manager
 > + FAILED
 
 2. Create charts for
-
 > + No. of male and female students
 > + CGPA categorization statistics
 
