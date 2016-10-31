@@ -1,0 +1,132 @@
+body{
+    background: white url('../images/static-images/background.jpg');
+    font-family: Verdana, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: 'Indie Flower';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/IndieFlower.ttf') format('truetype');;
+}
+
+.logo-font{
+    font-family:'Indie Flower';
+    font-weight: 800;
+}
+
+.card-image{
+    max-width:100% !important;
+    min-width:100% !important;
+}
+
+.album-card {
+    padding-bottom: 10px !important;
+    background-color: white;
+    min-height:500px !important;
+    max-height:800px !important;
+    max-width:600px !important;
+    min-width:300px !important;
+}
+
+.indent{
+    margin-left:10px;
+}
+
+.card-columns{
+    margin-top:30px !important;
+    margin-right:65px !important;
+}
+
+#index-sidebar{
+    background-color:whitesmoke;
+    height:1000px;
+    border-radius: 5px;
+    margin-top:30px;
+}
+
+.top-charts-header{
+    border-bottom: solid black;
+}
+
+.music-list-header{
+}
+
+.song-title{
+    font-size:18px;
+}
+
+#music-list-container{
+    background-color: white;
+    margin-top:30px;
+    min-height:600px;
+    max-height:1000px;
+    overflow-y: scroll;
+}
+
+.add-form{
+    max-width: 700px;
+    margin:0 auto;
+}
+
+.submit-padding-bottom{
+    margin-bottom: 30px !important;
+}
+
+.card-forms{
+    display:inline !important;
+}
+
+.card-content{
+    max-height: 100px !important;
+    min-height: 100px !important;
+}
+
+.card-footer-adjust{
+    margin-top:70px !important;
+}
+
+#footer {
+  background-color:#414141;
+}
+
+#footer a {
+  color:#efefef;
+}
+
+.logo-footer{
+    font-size:18px !important;
+}
+
+.footer-div{
+    margin-top:30px;
+}
+
+.skin{
+    background-color: rgba(15, 15, 15, 0.12) !important;
+}
+
+#floating-player{
+    position:fixed;
+    bottom: 0px;
+    right: 0px;
+    margin-right:0px;
+    height:90px;
+    width:100%;
+    display:none;
+    background-color: rgba(0, 0, 0, 0.67);
+}
+
+audio {
+    bakground-color:black;
+    width:96% !important;
+}
+
+.none-null{
+    display:block !important;
+}
+
+#now-playing{
+    color:white !important;
+    margin-left:25px !important;
+}
