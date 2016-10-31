@@ -13,11 +13,12 @@ student record sorter and manager
 2. Create Charts for
 > + no of male and female students
 > + CGPA statistics based on categorization
+> + based on their program cluster
 
 3. Create Admin Page
 
 4. File input 
-> + using xls files
+> + using csv or xls files
 
 5. Godspeed
 
