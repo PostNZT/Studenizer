@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title')
-   Studenizer | Home
+   Studenizer | Student
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="row">
        <h4 class="top-page-title">
         <span class="glyphicon glyphicon-user"></span>
-        Students | <a href="#" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus"></span> Add</a> |
+        Students | <a href="{{ route('add_student') }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus"></span> Add</a> |
         <a href="#" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open"></span> All Students</a>
       </h4>
       <hr>

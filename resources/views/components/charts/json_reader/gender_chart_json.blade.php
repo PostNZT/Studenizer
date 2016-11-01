@@ -18,7 +18,7 @@
   };
 
   var population_gender_chart = new Chart(gender_chart,{
-    type:'bar',
+    type:'line',
     data: gender_data,
     options: options
   });
