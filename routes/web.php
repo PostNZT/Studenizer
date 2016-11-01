@@ -7,3 +7,15 @@ Route::get('/', function () {
 Route::get('/student',function(){
     return view('student');
 })->name('student_page');
+
+Route::get('/charts/population',function(){
+  return view('chart');
+})->name('chart_page_population');
+
+Route::get('/charts/program_cluster',function(){
+    return view('chart');
+})->name('chart_page_program_cluster');
+
+Route::get('/charts/cgpa_cluster',function(){
+  return view('chart');
+})->name('chart_page_cgpa_cluster');

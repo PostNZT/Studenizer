@@ -22,9 +22,9 @@
               <span class="glyphicon glyphicon-graph"></span> Charts <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Population</a></li>
-              <li><a href="#">Program Cluster CGPA</a></li>
-              <li><a href="#">CGPA Categories Cluster</a></li>
+              <li><a href="{{ route('chart_page_population') }}">Population</a></li>
+              <li><a href="{{ route('chart_page_program_cluster') }}">Program Cluster CGPA</a></li>
+              <li><a href="{{ route('chart_page_cgpa_cluster') }}">CGPA Categories Cluster</a></li>
             </ul>
           </li>
         </ul>
