@@ -1,4 +1,11 @@
-<table class="table table-striped table-responsive table-hover">
+
+<center>
+  <h4 class="muted-text-search text-muted">
+      Display student records by <b>"Searching"</b> or <br>pressing the <b>"All Students"</b> button.
+  </h4>
+</center>
+
+<!-- <table class="table table-striped table-responsive table-hover">
     <thead>
       <tr>
           <th>ID</th>
@@ -31,4 +38,4 @@
           <td>3.00</td>
       </tr>
     </tbody>
-</table>
+</table> -->

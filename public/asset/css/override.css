@@ -9,6 +9,12 @@
 .logo{
   font-family: 'Righteous-Regular' !important;
   font-size:20px !important;
+  color: #467ab7 !important;
+}
+
+.footer-logo{
+  font-family: 'Righteous-Regular' !important;
+  font-size:18px !important;
 }
 
 .form-login{
@@ -28,4 +34,16 @@
 
 .top-page-title{
   font-size:25px !important;
+}
+
+.muted-text-search{
+  font-size:18px !important;
+}
+
+.footer-div{
+    margin-top:30px;
+}
+
+.master-container{
+  min-height: 480px !important;
 }
