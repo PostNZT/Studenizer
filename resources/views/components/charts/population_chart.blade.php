@@ -1,8 +1,10 @@
 <h4><b>Population Chart Report</b></h4>
 <hr>
+
 <div class="row">
   <h4>&nbsp;&nbsp;&nbsp;&nbsp;Total Population : 600</h4>
 </div>
+
 <div class="row">
     <div class="col-md-4">
       <h4>&nbsp;<b>Gender Distribution</b></h4>

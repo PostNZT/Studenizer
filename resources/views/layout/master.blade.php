@@ -9,6 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.min.css') }}" media="screen,projection"/>
         <link rel="stylesheet" href="{{ asset('asset/css/override.css') }}" media="screen,projection">
+        @yield('extracss')
+        <script type="text/javascript" src="{{ asset('asset/js/jquery-3.1.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('asset/js/bootstrap.min.js') }}"></script>
+        @yield('extrajs')
     </head>
 
     <body>
@@ -22,8 +26,5 @@
       @include('includes.footer')
 
     </body>
-
-      <script type="text/javascript" src="{{ asset('asset/js/jquery-3.1.1.min.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('asset/js/bootstrap.min.js') }}"></script>
 
 </html>
