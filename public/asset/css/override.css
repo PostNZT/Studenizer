@@ -23,6 +23,11 @@
   margin-top:2%;
 }
 
+.form-select{
+  width:300px;
+  margin-left:20px;
+}
+
 #promotional-title{
   font-size:40px !important;
   font-family: 'Righteous-Regular' !important;

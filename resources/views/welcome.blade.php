@@ -11,4 +11,3 @@
   </center>
   @include('includes.forms.login_form')
 @endsection
-

@@ -21,31 +21,6 @@
 </div>
 <script>
 
-  var options =  {
-
-        responsive: true,
-        scales: {
-             yAxes: [{
-                 ticks: {
-                     beginAtZero:true
-                 }
-             }]
-         },
-
-         legend: {
-          display: false
-        },
-
-        tooltips: {
-          callbacks: {
-             label: function(tooltipItem) {
-                    return tooltipItem.yLabel;
-             }
-          }
-        }
-
-  };
-
   /*
     {code for json parsing will be here bitch}
   */

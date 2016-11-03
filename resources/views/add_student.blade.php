@@ -13,8 +13,13 @@
 @endsection
 
 @section('content')
-  <h4 class="top-page-title">Add Student</h4>
+  <h4 class="top-page-title">Add Student
+  | <a href="{{ route('add_student') }}" class="btn btn-sm btn-primary">Single Form</a>
+  | <a href="{{ route('add_student_file') }}" class="btn btn-sm btn-success">Use CSV / XLS</a></h4>
   <hr>
-  @include('includes.forms.add_student')
-
+  @if(Request::url() == route('add_student'))
+    @include('includes.forms.add_student_form')
+  @elseif(Request::url() == route('add_student_file'))
+    @include('includes.forms.add_student_file_form')
+  @endif
 @endsection
