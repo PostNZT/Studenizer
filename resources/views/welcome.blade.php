@@ -4,6 +4,7 @@
   Studenizer | Categorize Students
 @endsection
 
+
 @section('content')
   <center>
     <h4 id="promotional-title"><b>Studenizer</b></h4>
