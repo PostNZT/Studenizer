@@ -34,3 +34,19 @@ Route::get('/student/add/file', function()
 {
   return view('add_student');
 })->name('add_student_file');
+
+Route::get('/admin/register',function()
+{
+  return view('admin_register');
+})->name('admin_register');
+
+
+Route::post('/admin/register',[
+    'uses' => 'UserController@postSignup',
+    'as' => 'admin_register_post'
+]);
+
+Route::post('/',[
+  'uses' => 'UserController@postSignIn',
+  'as' => 'signIn'
+]);
