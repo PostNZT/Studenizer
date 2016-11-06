@@ -8,25 +8,31 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
     public function postSignup(Request $request){
 
-      $username = $request['username'];
-      $password = bcrypt($request['password']);
+        $user = new User();
+        $user->username = $request['username'];;
+        $user->password = bcrypt($request['password']);
+        $user->first_name = $request['first_name'];
+        $user->middle_name = $request['middle_name'];
+        $user->last_name = $request['last_name'];
+        $user->birthday = $request['birthday'];
+        $user->address = $request['address'];
+        $user->contact_number = $request['contact_number'];
+        $user->email_address = $request['email_address'];
+        $create_user_feedback = "failed to create user check logs for more info";
+        $create_user_flag = 0;
 
-      $user = new User();
-      $user->username = $username;
-      $user->password = $password;
-      $user->first_name = "fuck";
-      $user->middle_name = "bitch";
-      $user->last_name = "shit";
-      $user->birthday = "2016-11-05 ";
-      $user->address = "di makita street";
-      $user->contact_number = "19318638613";
-      $user->email_address = "fuck@yahoo.com";
+        if($user->save()){
+            $create_user_feedback = "user ".$user->username." was added";
+            $create_user_flag = 1;
+        }
 
-      $user->save();
-
-      return redirect()->back();
+        return redirect()->back()->with([
+          'message' => $create_user_feedback,
+          'create_user_flag' => $create_user_flag
+        ]);
 
     }
 
@@ -39,4 +45,12 @@ class UserController extends Controller
       return redirect()->back();
 
     }
+
+    public function getLogout(){
+
+      Auth::logout();
+      return redirect()->route('welcome_page');
+
+    }
+
 }

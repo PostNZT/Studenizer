@@ -3,10 +3,10 @@
   <div class="form-group">
     <h2>Sign In</h2><hr>
     <label for="username"><b>Username</b></label>
-    <input type="text" class="form-control" name="username" />
+    <input type="text" class="form-control" name="username" required=""/>
     <br>
     <label for="password"><b>Password</b></label>
-    <input type="password" class="form-control" name="password" /><br>
+    <input type="password" class="form-control" name="password" required="" /><br>
     <button type="submit" class="btn btn-md btn-success form-control">
     <span class="glyphicon glyphicon-lock"></span> Submit
     </button>

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('contact_number');
             $table->String('email_address')->unique();
+            $table->string('remember_token');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@
 
       @include('includes.navbar')
 
-      <div class="container master-container">
+      <div class="container container-fluid master-container">
       @yield('content')
       </div>
 
