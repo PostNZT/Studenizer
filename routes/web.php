@@ -69,7 +69,15 @@ Route::post('/student/add',
   'as' => 'add_student_post'
 ]);
 
+Route::post('/student/add/file',
+[
+    'uses' => 'StudentController@postAddBulkStudent',
+    'as' => 'add_student_bulk'
+]);
+
 Route::get('/student/view/all',[
   'uses' => 'StudentController@getViewStudentList',
   'as' => 'view_all_student'
 ]);
+
+

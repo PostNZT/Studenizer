@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -28,7 +32,7 @@ class StudentController extends Controller
       $student->enrolled_units = $request['enrolled_unit'];
       $student->year_enrolled = $request['year_enrolled'];
       $student->semester_enrolled = $request['sem_enrolled'];
-
+      
       return $student;
 
     }

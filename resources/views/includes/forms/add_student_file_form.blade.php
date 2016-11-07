@@ -1,6 +1,6 @@
 
 
-<form class="form-login form-horizontal form" action="index.html" method="post">
+<form class="form-login form-horizontal form" action="{{ route('add_student_bulk') }}" method="post">
     <br>
     <h4><b>Add Student Data using <br>"Excel" or "CSV" File</b></h4>
     <label>Excel / CSV</label>
