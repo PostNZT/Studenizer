@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use Excel;
 use App\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+
 
 class StudentController extends Controller
 {
 
-    protected $student_per_page = 20;
+    private $student_per_page = 20;
 
-    public function addStudentHelper(Student &$student,Request $request){
+    private function addStudentHelper(Student $student,Request $request)
+    {
 
       $student->id = $request['student_id'];
       $student->first_name = $request['first_name'];
@@ -46,21 +45,51 @@ class StudentController extends Controller
         $create_student_feedback = "failed to add a student check logs for more info";
         $create_student_flag = 0;
 
-        if($student->save()){
+        if($student->save())
+        {
+
           $create_student_feedback = "student "
                                      .$student->first_name." ".$student->middle_name." ".$student->last_name
                                      ." was added";
           $create_student_flag = 1;
-         }
+
+        }
 
         return redirect()->route('add_student')->with([
+
           'message' => $create_student_feedback,
           'create_student_flag' => $create_student_flag
+
         ]);
 
     }
 
+    private function uploadDataFile(Request $request)
+    {
+
+        $filename = "";
+
+        if($request->hasFile('datasheet'))
+        {
+
+            $file = $request->file('datasheet');
+            if($file->guessClientExtension() == "xls")
+            {
+                $filename = $file->storeAs('datasheets','student.xls');
+            }
+
+        }
+
+        return $filename;
+
+    }
+
     public function postAddBulkStudent(Request $request){
+
+
+        $filename = $this->uploadDataFile($request);
+
+        echo $filename;
 
       //code..
 
@@ -69,9 +98,13 @@ class StudentController extends Controller
 
     public function getViewStudentList()
     {
+
          $student = Student::orderBy('id', 'desc')->paginate($this->student_per_page);
+
          return view('/student')->with(compact('student'),[
+
            'has_student' => 'has_student'
+
          ]);
     }
 

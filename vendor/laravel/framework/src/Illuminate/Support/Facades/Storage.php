@@ -7,6 +7,10 @@ namespace Illuminate\Support\Facades;
  */
 class Storage extends Facade
 {
+    public static function disk($string)
+    {
+    }
+
     /**
      * Get the registered name of the component.
      *
