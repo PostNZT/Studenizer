@@ -1,3 +1,12 @@
+php_value extension=zip.so
+php_value max_execution_time = 240
+php_value max_input_time = 240
+php_value memory_limit = 500M
+php_value post_max_size=500M
+php_value upload_max_filesize=500M
+php_value max_file_uploads = 30
+
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews
@@ -18,3 +27,4 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
+

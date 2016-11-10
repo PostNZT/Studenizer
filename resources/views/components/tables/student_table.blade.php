@@ -1,6 +1,7 @@
 
 
 <table class="table table-striped table-responsive table-hover">
+
     <thead>
       <tr>
           <th>ID</th>
@@ -10,15 +11,8 @@
           <th>CGPA</th>
       </tr>
     </thead>
-    <tbody>
 
-    <center>
-        <h4 class="muted-text-search text-muted">
-          @if(Request::url() == route('student_page'))
-            Display student records by <b>"Searching"</b> or <br>pressing the <b>"All Students"</b> button.
-          @endif
-        </h4>
-    </center>
+    <tbody>
 
     @if(Request::url() == route('view_all_student'))
         @foreach($student as $student)
@@ -31,5 +25,8 @@
             </tr>
         @endforeach
     @endif
+
     </tbody>
 </table>
+
+

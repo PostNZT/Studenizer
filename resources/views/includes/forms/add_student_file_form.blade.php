@@ -4,7 +4,7 @@
     <br>
     <h4><b>Add Student Data using <br>"Excel" or "CSV" File</b></h4>
     <label for="datasheet">Excel / CSV</label>
-    <input type="file" class="form-control" name="datasheet" />
+    <input type="file" class="form-control" name="datasheet"/>
     <br>
     <button type="submit" class="form-control btn btn-md btn-info">
       Submit

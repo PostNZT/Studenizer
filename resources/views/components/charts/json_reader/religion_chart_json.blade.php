@@ -4,7 +4,7 @@ var religion_data = {
     datasets: [
       {
          label:'Religion Distribution',
-         data: [350,250],
+         data: [data.muslim_population,data.muslim_non_population],
          backgroundColor: [
              'rgba(0, 93, 172, 0.2)'
          ],

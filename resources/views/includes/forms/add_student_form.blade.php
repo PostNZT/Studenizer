@@ -21,13 +21,6 @@
         <input class="form-control" type="text" name="middle_name" value="" class="required" placeholder="Middle"/>
         <input class="form-control" type="text" name="last_name" value="" class="required" placeholder="Last"/>
 
-      <br>
-        <label for="birthday">Birthday *</label>
-        <div class="input-group input-append date" id="dp1">
-             <input name="birthday" type="text" class="form-control"/>
-             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-        </div>
-
      <br>
        <label for="gender">Gender *</label>
        <select class="form-control" name="gender">
@@ -115,8 +108,3 @@
     </div>
 </form>
 
-<script type="text/javascript">
-  $('#dp1').datepicker({
-          format: 'yyyy-mm-dd'
-  });
-</script>

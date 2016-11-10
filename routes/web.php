@@ -71,7 +71,7 @@ Route::post('/student/add',
 
 Route::post('/student/add/file',
 [
-    'uses' => 'StudentController@postAddBulkStudent',
+    'uses' => 'StudentController@postAddStudentByFile',
     'as' => 'add_student_bulk'
 ]);
 
@@ -79,5 +79,17 @@ Route::get('/student/view/all',[
   'uses' => 'StudentController@getViewStudentList',
   'as' => 'view_all_student'
 ]);
+
+Route::get('/student/gender/count',[
+   'uses' => 'StudentController@getGenderPopulation',
+   'as' => 'gender_population'
+]);
+
+Route::get('/student/muslim/count',[
+   'uses' => 'StudentController@getMuslimPopulation',
+    'as' => 'muslim_population'
+]);
+
+
 
 

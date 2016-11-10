@@ -23,7 +23,17 @@
        </form>
     </div><br>
     <div class="row">
-        @include('components.tables.student_table')
+        @if(Request::url() == route('view_all_student'))
+            {{ $student->links() }}
+            @include('components.tables.student_table')
+            {{ $student->links() }}
+        @else
+            <center>
+              <h4 class="muted-text-search text-muted">
+                 Display student records by <b>"Searching"</b> or <br>pressing the <b>"All Students"</b> button.
+              </h4>
+            </center>
+        @endif
     </div>
   </div>
 @endsection
