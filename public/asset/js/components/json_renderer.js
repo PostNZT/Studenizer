@@ -6,12 +6,13 @@ $(document).ready(function()
   populate_data = function(chart_labels,chart_data,chart_background,chart_border,chart_canvas, chart_type)
   {
 
-        var options = set_chart_option();
+        var options = set_chart_option_default();
 
         var data = {
             labels: chart_labels ,
             datasets: [
               {
+                 label:'',
                  data:chart_data ,
                  backgroundColor:chart_background,
                  borderColor:chart_border,
@@ -125,35 +126,17 @@ $(document).ready(function()
             }
 
 
-        /*    var program_chart = $("#population_program_canvas").get(0).getContext("2d");
-            var program_data = program_population;
-            var chart_type = 'doughnut';
-            var chart_background =  background_color;
-            var chart_border = border_color;
+            var program_population_chart = document.getElementById("population_program_canvas").getContext('2d');
+            var chart_type = "bar";
 
             populate_data(
               program_labels,
-              program_data,
-              chart_background,
-              chart_border,
-              program_chart,
+              program_population,
+              background_color,
+              border_color,
+              program_population_chart,
               chart_type
             );
-*/
-
-                  var ctx = document.getElementById("population_program_canvas").getContext('2d');
-                  var options = set_chart_option();
-                  var myChart = new Chart(ctx, {
-                  type: 'pie',
-                  data: {
-                    labels:program_labels,
-                    datasets: [{
-                    backgroundColor:background_color,
-                    data:program_population
-                    }]
-                  },
-                    options: options,
-                  });
 
 
     });
@@ -247,9 +230,8 @@ $(document).ready(function()
 
   };
 
-  random_color_generator = function()
-  {
-      return "#"+((1<<24)*Math.random()|0).toString(16);
+  random_color_generator = function(){
+    return "#"+((1<<24)*Math.random()|0).toString(16);
   };
 
 

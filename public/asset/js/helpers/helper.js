@@ -35,7 +35,7 @@ $(document).ready(function(){
   *@return object
   */
 
-  set_chart_option = function(){
+  set_chart_option_default = function(){
 
     return   {
 
@@ -49,8 +49,9 @@ $(document).ready(function(){
                },
 
                legend: {
-                display: true
-              }
+                display: false
+              },
+
 
           };
 

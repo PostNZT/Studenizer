@@ -198,6 +198,7 @@ class StudentController extends Controller
 
           $program = str_replace("and", "&", $program);
           $count = Student::where(['program' =>$program])->count();
+          $program = substr($program, 0, 25);
           $program_population_counter[$counter_iterator] = $program.' : '.$count;
           $counter_iterator++;
 
