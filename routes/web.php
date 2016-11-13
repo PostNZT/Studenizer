@@ -3,9 +3,8 @@
 Route::get('/', function ()
 {
     if(Auth::check())
-    {
       return view('student');
-    }
+
     return view('welcome');
 })->name('welcome_page');
 
@@ -31,12 +30,24 @@ Route::get('/charts/cgpa_cluster',function()
 
 Route::get('/student/add', function()
 {
+  if(Auth::check())
     return view('add_student');
+
+    return redirect()
+           ->route('welcome_page')
+           ->with(['message'=>'please login to add a student']);
+
 })->name('add_student');
 
 Route::get('/student/add/file', function()
 {
-    return view('add_student');
+   if(Auth::check())
+      return view('add_student');
+
+      return redirect()
+             ->route('welcome_page')
+             ->with(['message'=>'please login to add a student']);
+
 })->name('add_student_file');
 
 Route::get('/admin/register',function()
@@ -65,31 +76,55 @@ Route::get('/logout',
 
 Route::post('/student/add',
 [
-  'uses' => 'StudentController@postAddStudent',
-  'as' => 'add_student_post'
+    'uses' => 'StudentController@postAddStudent',
+    'as' => 'add_student_post',
+    'middleware'=>'auth'
 ]);
 
 Route::post('/student/add/file',
 [
     'uses' => 'StudentController@postAddStudentByFile',
-    'as' => 'add_student_bulk'
+    'as' => 'add_student_bulk',
+    'middleware'=>'auth'
 ]);
 
 Route::get('/student/view/all',[
-  'uses' => 'StudentController@getViewStudentList',
-  'as' => 'view_all_student'
+    'uses' => 'StudentController@getViewStudentList',
+    'as' => 'view_all_student'
 ]);
 
 Route::get('/student/gender/count',[
-   'uses' => 'StudentController@getGenderPopulation',
-   'as' => 'gender_population'
+    'uses' => 'StudentController@getGenderPopulation',
+    'as' => 'gender_population'
 ]);
 
 Route::get('/student/muslim/count',[
-   'uses' => 'StudentController@getMuslimPopulation',
+    'uses' => 'StudentController@getMuslimPopulation',
     'as' => 'muslim_population'
 ]);
 
+Route::get('/student/admit_types',[
+    'uses' => 'StaticDataController@getAdmitTypes',
+    'as' => 'admit_types'
+]);
 
+Route::get('/student/term_types',[
+    'uses' => 'StaticDataController@getTermTypes',
+    'as' => 'term_types'
+]);
 
+Route::get('/student/scholarhip_list',[
+    'uses' => 'StaticDataController@getScholarshipList',
+    'as' => 'scholarship_list'
+]);
+
+Route::get('/student/programs',[
+    'uses' => 'StaticDataController@getProgramList',
+    'as' => 'program_list'
+]);
+
+Route::get('/student/program/population' , [
+    'uses' => 'StudentController@getCoursePopulation',
+    'as' => 'course_population'
+]);
 

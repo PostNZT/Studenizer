@@ -5,11 +5,7 @@
  <h4>&nbsp;&nbsp;&nbsp;&nbsp;<b>Select Program</b></h4>
 
  <form class="form form-select">
-    <select class="form-control" name="program_option">
-        <option>BS Information Technology</option>
-        <option>BS Civil Engineering</option>
-        <option>BS Mathematics</option>
-        <option>AB Psychology</option>
+    <select class="form-control" name="program_option" id="program">
     </select>
   </form>
 
@@ -21,11 +17,15 @@
       <canvas id="program_cluster_canvas" height="300px" width="300px"></canvas>
     </div>
 </div>
-<script>
 
-  /*
-    {code for json parsing will be here bitch}
-  */
-@include('components.charts.json_reader.program_cluster_chart_json')
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+    var program_list_route = "{{ route('program_list') }}";
+    program_list_option_render(program_list_route);
+    program_cluster_chart();
+
+});
 
 </script>

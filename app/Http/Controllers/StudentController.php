@@ -32,10 +32,11 @@ class StudentController extends Controller
       $student->enrolled_units = $request['enrolled_unit'];
       $student->year_enrolled = $request['year_enrolled'];
       $student->semester_enrolled = $request['sem_enrolled'];
-      
+
       return $student;
 
     }
+
 
     public function postAddStudent(Request $request)
     {
@@ -75,11 +76,13 @@ class StudentController extends Controller
 
     }
 
-    public function postAddBulkStudent(){
+    public function postAddBulkStudent()
+    {
 
 
             ini_set('max_execution_time', 500);
-            Excel::load(Input::file('datasheet'), function ($reader) {
+            Excel::load(Input::file('datasheet'), function ($reader)
+            {
 
                 $reader->each(function($sheet)
                 {
@@ -97,13 +100,12 @@ class StudentController extends Controller
                             $student->first_name = $row['5'];
                             $student->middle_name = $this->checkIfNull($row['6']);
                             $student->last_name = $row['4'];
-
                             $gender_flag = $row['13'];
-
                             $gender_value = 0;
 
                             if($gender_flag == "Male")
                                 $gender_value = 1;
+
 
                             $student->gender = $gender_value;
                             $student->religion = $this->checkIfNull($row['10']);
@@ -122,7 +124,7 @@ class StudentController extends Controller
                         }
                         catch (Exception $except)
                         {
-                                //nothing to except shit
+                                //no shits to except
                         }
 
 
@@ -176,11 +178,38 @@ class StudentController extends Controller
     {
         $muslim_non_population = Student::where(['religion'=>'Muslim'])->count();
         $muslim_population = Student::where(['religion'=>'Non-Muslim'])->count();
+        $total_population = $this->getStudentPopulation();
 
         return response()->json([
            'muslim_non_population' => $muslim_non_population,
-           'muslim_population' => $muslim_population
+           'muslim_population' => $muslim_population,
+           'total_population' => $total_population
         ]);
     }
+
+    public function getCoursePopulation(){
+
+
+        $program_population_counter = array();
+        $counter_iterator = 0;
+
+        foreach(StaticDataController::load_xml_data()->program_types->program as $program)
+        {
+
+          $program = str_replace("and", "&", $program);
+          $count = Student::where(['program' =>$program])->count();
+          $program_population_counter[$counter_iterator] = $program.' : '.$count;
+          $counter_iterator++;
+
+        }
+
+        return response()->json([
+            'counts' => $program_population_counter
+        ]);
+
+    }
+
+
+
 
 }

@@ -13,13 +13,13 @@
     <div class="form-group">
 
         <label for="student_id">Student ID *</label>
-        <input class="form-control" type="text" name="student_id" value="" class="required" placeholder="e.g. 2012702838"/>
+        <input class="form-control" type="text" name="student_id" value="" required="" placeholder="e.g. 2012702838"/>
 
       <br>
       <label>Name *</label>
-        <input class="form-control" type="text" name="first_name" value="" class="required" placeholder="First"/>
-        <input class="form-control" type="text" name="middle_name" value="" class="required" placeholder="Middle"/>
-        <input class="form-control" type="text" name="last_name" value="" class="required" placeholder="Last"/>
+        <input class="form-control" type="text" name="first_name" value="" required="" placeholder="First"/>
+        <input class="form-control" type="text" name="middle_name" value="" required="" placeholder="Middle"/>
+        <input class="form-control" type="text" name="last_name" value="" required="" placeholder="Last"/>
 
      <br>
        <label for="gender">Gender *</label>
@@ -31,20 +31,15 @@
 
       <br>
         <label for="student_id">Religion</label>
-        <input class="form-control" type="text" name="religion" value="" class="required" />
+        <input class="form-control" type="text" name="religion" value="" required="" />
 
       <br>
        <label for="first_cgpa">First Sem CGPA *</label>
-       <input type="text" class="form-control" name="first_sem_cgpa" value="" placeholder="e.g. 1.0"/>
+       <input type="text" class="form-control" name="first_sem_cgpa" value="" placeholder="e.g. 1.0" required=""/>
 
       <br>
         <label for="admit_type">Admit Type *</label>
-        <select class="form-control" name="admit_type">
-          <option value="none">-- Select --</option>
-          <option value="freshman">Freshman</option>
-          <option value="sophomore">Sophomore</option>
-          <option value="junior">Junior</option>
-          <option value="senior">Senior</option>
+        <select class="form-control" name="admit_type" id="admit_type">
         </select>
 
       <br>
@@ -53,51 +48,31 @@
 
       <br>
         <label for="program">Term Admitted *</label>
-        <select class="form-control" name="term_admitted">
-          <option value="none">-- Select --</option>
-          <option value="freshman">1st Semester</option>
-          <option value="sophomore">2nd Semester</option>
-          <option value="junior">3rd Semester</option>
-          <option value="senior">4th Semester</option>
+        <select class="form-control" name="term_admitted" id="term_admitted">
+
         </select>
 
       <br>
         <label for="program">Program *</label>
-        <select class="form-control" name="program">
-          <option value="none">-- Select --</option>
-          <option value="BS Information Technology">BS Information Technology</option>
-          <option value="BS Accountancy">BS Accountancy</option>
-          <option value="BS Social Work">BS Social Work</option>
-          <option value="BS Civil Engineering">BS Civil Engineering</option>
+        <select class="form-control" name="program" id="program">
         </select>
 
         <br>
           <label for="program">Scholarship *</label>
-          <select class="form-control" name="scholarship">
-            <option value="none">-- Select --</option>
-            <option value="Paying">Paying</option>
-            <option value="Dependent">Dependent</option>
-            <option value="SPL">SPL</option>
-            <option value="Tuition Privilege">Tuition Privilege</option>
-            <option value="Academic">Academic</option>
-            <option value="Science">Science</option>
+          <select class="form-control" name="scholarship" id="scholarship">
           </select>
 
         <br>
         <label for="enrolled_unit">Enrolled Units *</label>
-        <input type="text" class="form-control" name="enrolled_unit" value="" placeholder="e.g. 24" />
+        <input type="text" class="form-control" name="enrolled_unit" value="" placeholder="e.g. 24" required=""/>
 
         <br>
         <label for="year_enrolled">Year Enrolled</label>
-        <input type="text" class="form-control" name="year_enrolled" value="" placeholder="e.g. 2016" />
+        <input type="text" class="form-control" name="year_enrolled" value="" placeholder="e.g. 2016" required=""/>
 
         <br>
         <label for="sem_enrolled">Semester Enrolled</label>
-        <select class="form-control" name="sem_enrolled">
-          <option value="none">-- Select --</option>
-          <option value="1st Semester">1st Semester</option>
-          <option value="2nd Semester">2nd Semester</option>
-          <option value="3rd Semester">Summer</option>
+        <select class="form-control" name="sem_enrolled" id="sem_enrolled">
         </select>
 
         <br>
@@ -108,3 +83,20 @@
     </div>
 </form>
 
+<script>
+
+  $(document).ready(function(){
+
+    var term_types_route = "{{ route('term_types') }}";
+    var admit_types_route = "{{ route('admit_types') }}";
+    var scholarship_types_route = "{{ route('scholarship_list') }}";
+    var program_list_route = "{{ route('program_list') }}";
+
+    term_types_option_render(term_types_route);
+    admit_types_option_render(admit_types_route);
+    scholarship_types_option_render(scholarship_types_route);
+    program_list_option_render(program_list_route);
+
+  });
+
+</script>

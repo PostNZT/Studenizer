@@ -10,6 +10,8 @@
 
 @section('extrajs')
   <script src="{{ asset('asset/js/bootstrap-datetimepicker.min.js') }}"></script>
+  <script src="{{ asset('asset/js/helpers/helper.js') }}"></script>
+  <script src="{{ asset('asset/js/components/json_renderer.js') }}"></script>
 @endsection
 
 @section('content')

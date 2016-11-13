@@ -9,8 +9,7 @@
     <div class="row">
        <h4 class="top-page-title">
         <span class="glyphicon glyphicon-user"></span>
-        Students | <a href="{{ route('add_student') }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-plus"></span> Add</a> |
-        <a href="{{ route('view_all_student') }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open"></span> All Students</a>
+        Students | <a href="{{ route('view_all_student') }}" class="btn btn-sm btn-success"> View All</a>
       </h4>
       <hr>
       <form class="form form-horizontal" role="search">

@@ -15,23 +15,24 @@
       <canvas id="population_religion_canvas" height="300px" width="300px"></canvas>
     </div>
 </div>
+
+<div class="row">
+  <h4>&nbsp;<b>Program Distribution</b></h4>
+  <canvas id="population_program_canvas" height="200px" width="300px"></canvas>
+</div>
+
 <script>
-
-
 
   $(document).ready(function ()
   {
 
-      $.getJSON( "{{ route('gender_population') }}", function( data )
-      {
-          $("#total-population").html("Total Population "+data.total_population);
-          @include('components.charts.json_reader.gender_chart_json')
-      });
+      var gender_pop_route = "{{ route('gender_population') }}";
+      var muslim_pop_route = "{{ route('muslim_population') }}";
+      var course_pop_route = "{{ route('course_population') }}";
 
-      $.getJSON("{{ route('muslim_population') }}", function ( data ) {
-          @include('components.charts.json_reader.religion_chart_json')
-      });
-
+      gender_population_render(gender_pop_route);
+      muslim_population_render(muslim_pop_route);
+      course_population_render(course_pop_route);
 
   });
 

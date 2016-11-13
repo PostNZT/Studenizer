@@ -14,8 +14,8 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="{{ route('student_page') }}"><span class="glyphicon glyphicon-user"></span> Students<span class="sr-only">(current)</span></a>
+          <li @if(Request::url() == route('student_page')) class="active" @endif >
+            <a href="{{ route('student_page') }}"><span class="glyphicon glyphicon-user"></span> Students</a>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -30,11 +30,20 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
            @if(Auth::check())
-              <li class="dropdown">
+
+                <li    @if(Request::url() == route('add_student')) class="dropdown active"
+                       @else class="dropdown"
+                       @endif
+                >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-king"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Dashboard</a></li>
+                  <li>
+                    <a href="{{ route('add_student') }}">
+                      <span class="glyphicon glyphicon-plus-sign"></span>
+                      Add Student
+                    </a>
                   <li><a href="#">Logs</a></li>
                   <li><a href="#">Profile</a></li>
                   <li role="separator" class="divider"></li>
