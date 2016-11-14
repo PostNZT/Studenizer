@@ -17,8 +17,26 @@
 </div>
 
 <div class="row">
-  <h4>&nbsp;<b>Program Distribution</b></h4>
-  <canvas id="population_program_canvas" height="200px" width="300px"></canvas>
+      <h4>&nbsp;<b>Program Distribution</b></h4>
+  <div class="row container">
+    <table class="table table-striped table-responsive table-hover">
+
+        <thead>
+          <tr>
+              <th>Program</th>
+              <th>Population</th>
+          </tr>
+        </thead>
+
+        <tbody id="program_table_body">
+        </tbody>
+    </table>
+  </div>
+  <div class="row scrollable-chart-div-width">
+    <div style="height:400px;width:4000px;">
+      <canvas id="population_program_canvas" height="700px;" width="4000px;"></canvas>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -29,10 +47,13 @@
       var gender_pop_route = "{{ route('gender_population') }}";
       var muslim_pop_route = "{{ route('muslim_population') }}";
       var course_pop_route = "{{ route('course_population') }}";
+      var gender_pop_canvas = "population_gender_canvas";
+      var muslim_pop_canvas = "population_religion_canvas";
+      var program_pop_canvas = "population_program_canvas";
 
-      gender_population_render(gender_pop_route);
-      muslim_population_render(muslim_pop_route);
-      course_population_render(course_pop_route);
+      draw_chart(gender_pop_route, gender_pop_canvas, "bar");
+      draw_chart(muslim_pop_route, muslim_pop_canvas, "bar");
+      draw_chart(course_pop_route, program_pop_canvas, "bar");
 
   });
 

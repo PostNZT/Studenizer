@@ -1,17 +1,6 @@
 
-
-  /*
-  * Helper Script for client side app interaction
-  *
-  */
-
-
 $(document).ready(function(){
 
-  /*
-  *@param json data
-  *@return array option_container
-  */
 
   fill_option_container = function(data)
   {
@@ -29,11 +18,6 @@ $(document).ready(function(){
 
   };
 
-  /*
-  *sets chart option
-  *@param none-null
-  *@return object
-  */
 
   set_chart_option_default = function(){
 
@@ -54,6 +38,30 @@ $(document).ready(function(){
 
 
           };
+
+  };
+
+
+  generate_frequency_table = function(chart_labels, chart_data, table_body)
+  {
+
+      var table_data = "";
+
+      for (var i = chart_data.length-1; i > 0; i--)
+      {
+          table_data = "<tr><td>"+chart_labels[i]+
+                       "</td><td>"+chart_data[i]+
+                       "<td></tr>"+table_data;
+      }
+
+      $("#"+table_body).html(table_data);
+
+  };
+
+  random_color_generator = function()
+  {
+
+    return "#"+((1<<24)*Math.random()|0).toString(16);
 
   };
 

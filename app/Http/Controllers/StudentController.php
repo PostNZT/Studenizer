@@ -17,23 +17,23 @@ class StudentController extends Controller
     private function addStudentHelper(Student $student,Request $request)
     {
 
-      $student->id = $request['student_id'];
-      $student->first_name = $request['first_name'];
-      $student->middle_name = $request['middle_name'];
-      $student->last_name = $request['last_name'];
-      $student->gender = $request['gender'];
-      $student->religion = $request['religion'];
-      $student->first_sem_cgpa = $request['first_sem_cgpa'];
-      $student->admit_type = $request['admit_type'];
-      $student->year_admitted = $request['year_admitted'];
-      $student->term_admitted = $request['term_admitted'];
-      $student->program = $request['program'];
-      $student->scholarship = $request['scholarship'];
-      $student->enrolled_units = $request['enrolled_unit'];
-      $student->year_enrolled = $request['year_enrolled'];
-      $student->semester_enrolled = $request['sem_enrolled'];
+        $student->id = $request['student_id'];
+        $student->first_name = $request['first_name'];
+        $student->middle_name = $request['middle_name'];
+        $student->last_name = $request['last_name'];
+        $student->gender = $request['gender'];
+        $student->religion = $request['religion'];
+        $student->first_sem_cgpa = $request['first_sem_cgpa'];
+        $student->admit_type = $request['admit_type'];
+        $student->year_admitted = $request['year_admitted'];
+        $student->term_admitted = $request['term_admitted'];
+        $student->program = $request['program'];
+        $student->scholarship = $request['scholarship'];
+        $student->enrolled_units = $request['enrolled_unit'];
+        $student->year_enrolled = $request['year_enrolled'];
+        $student->semester_enrolled = $request['sem_enrolled'];
 
-      return $student;
+        return $student;
 
     }
 
@@ -81,6 +81,7 @@ class StudentController extends Controller
 
 
             ini_set('max_execution_time', 500);
+
             Excel::load(Input::file('datasheet'), function ($reader)
             {
 
@@ -134,7 +135,7 @@ class StudentController extends Controller
 
             });
 
-        return redirect()->back();
+          return redirect()->back();
 
     }
 
@@ -152,39 +153,38 @@ class StudentController extends Controller
     }
 
 
-    private function getStudentPopulation()
+    public function getStudentPopulation()
     {
-        $student_population = Student::count();
 
-        return $student_population;
+        return response()->json([
+          'data' => Student::count()
+        ]);
     }
 
     public function getGenderPopulation()
     {
 
-        $gender_male_population = Student::where(['gender'=>'1'])->count();
-        $gender_female_population = Student::where(['gender'=>'0'])->count();
-        $total_population = $this->getStudentPopulation();
+        $gender_population = array();
+        $gender_population[0] = " Male : ".Student::where(['gender' => '1'])->count();
+        $gender_population[1] = " Female : ".Student::where(['gender' => '0'])->count();
 
         return response()->json([
-            'male_population' => $gender_male_population,
-            'female_population' => $gender_female_population,
-            'total_population' => $total_population
+            'data' => $gender_population
         ]);
 
     }
 
     public function getMuslimPopulation()
     {
-        $muslim_non_population = Student::where(['religion'=>'Muslim'])->count();
-        $muslim_population = Student::where(['religion'=>'Non-Muslim'])->count();
-        $total_population = $this->getStudentPopulation();
+
+        $muslim_population = array();
+        $muslim_population[0] = " Muslim : ".Student::where(['religion'=>'Muslim'])->count();
+        $muslim_population[1] = " Non Muslim :".Student::where(['religion'=>'Non-Muslim'])->count();
 
         return response()->json([
-           'muslim_non_population' => $muslim_non_population,
-           'muslim_population' => $muslim_population,
-           'total_population' => $total_population
+            'data' => $muslim_population
         ]);
+
     }
 
     public function getCoursePopulation(){
@@ -193,19 +193,18 @@ class StudentController extends Controller
         $program_population_counter = array();
         $counter_iterator = 0;
 
-        foreach(StaticDataController::load_xml_data()->program_types->program as $program)
+        foreach(StaticDataController::load_xml_data()->program_types->data as $program)
         {
 
           $program = str_replace("and", "&", $program);
           $count = Student::where(['program' =>$program])->count();
-          $program = substr($program, 0, 25);
           $program_population_counter[$counter_iterator] = $program.' : '.$count;
           $counter_iterator++;
 
         }
 
         return response()->json([
-            'counts' => $program_population_counter
+            'data' => $program_population_counter
         ]);
 
     }

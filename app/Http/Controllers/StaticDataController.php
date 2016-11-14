@@ -1,5 +1,10 @@
 <?php
 
+/*
+*class that manipulates static data from an xml file
+*@author: Nelmin Jay Magan Anoc
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
@@ -17,32 +22,29 @@ class StaticDataController extends Controller
       public function getAdmitTypes()
       {
 
-         $admits_xml = $this->load_xml_data();
-         return response()->json($admits_xml->admit_types);
+         return response()->json($this->load_xml_data()->admit_types);
 
       }
 
       public function getTermTypes()
       {
 
-         $semester_xml = $this->load_xml_data();
-         return response()->json($semester_xml->semester_types);
+         return response()->json($this->load_xml_data()->semester_types);
 
       }
 
       public function getScholarshipList()
       {
 
-          $scholarship_xml = $this->load_xml_data();
-          return response()->json($scholarship_xml->scholarship_types);
+        return response()->json($this->load_xml_data()->scholarship_types);
 
       }
 
       public function getProgramList()
       {
 
-          $programs_xml = $this->load_xml_data();
-          return response()->json($programs_xml->program_types);
+          return response()->json($this->load_xml_data()->program_types);
+
       }
 
 }

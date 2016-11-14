@@ -85,17 +85,19 @@
 
 <script>
 
-  $(document).ready(function(){
+  $(document).ready(function()
+  {
 
     var term_types_route = "{{ route('term_types') }}";
     var admit_types_route = "{{ route('admit_types') }}";
     var scholarship_types_route = "{{ route('scholarship_list') }}";
     var program_list_route = "{{ route('program_list') }}";
 
-    term_types_option_render(term_types_route);
-    admit_types_option_render(admit_types_route);
-    scholarship_types_option_render(scholarship_types_route);
-    program_list_option_render(program_list_route);
+    option_render(term_types_route,"term_admitted");
+    option_render(term_types_route,"sem_enrolled");
+    option_render(admit_types_route,"admit_type");
+    option_render(scholarship_types_route,"scholarship");
+    option_render(program_list_route,"program");
 
   });
 
