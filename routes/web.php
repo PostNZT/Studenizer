@@ -83,7 +83,7 @@ Route::post('/student/add',
 
 Route::post('/student/add/file',
 [
-    'uses' => 'StudentController@postAddStudentByFile',
+    'uses' => 'StudentController@postAddBulkStudent',
     'as' => 'add_student_bulk',
     'middleware'=>'auth'
 ]);
@@ -129,6 +129,17 @@ Route::get('/student/program/population' , [
 ]);
 
 Route::get('/student/population', [
-  'uses' => 'StudentController@getStudentPopulation',
-  'as' => 'student_population'
+    'uses' => 'StudentController@getStudentPopulation',
+    'as' => 'student_population'
+]);
+
+Route::get('/student/search', [
+     'uses' => 'StudentController@searchStudent',
+     'as'   => 'student_search'
+]);
+
+
+Route::get('/students/cluster/cgpa', [
+     'uses' => 'StudentController@getProgramClusterDistribution',
+     'as' => 'cluster_cgpa'
 ]);

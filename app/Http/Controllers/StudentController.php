@@ -12,7 +12,18 @@ class StudentController extends Controller
 {
 
     private $student_per_page = 20;
-
+    private $cgpa_category = array(
+      'Excellent',
+      'Superior',
+      'Very Good',
+      'Good',
+      'Very Satisfactory',
+      'High Average',
+      'Average',
+      'Fair',
+      'Pass',
+      'Fail'
+      );
 
     private function addStudentHelper(Student $student,Request $request)
     {
@@ -119,6 +130,7 @@ class StudentController extends Controller
                             $student->enrolled_units = $row['12'];
                             $student->year_enrolled = $row['15'];
                             $student->semester_enrolled = $row['16'];
+                            $student->remarks = $this->determineRemarks($row['14']);
 
                             $student->save();
 
@@ -140,15 +152,34 @@ class StudentController extends Controller
     }
 
 
+    public function searchStudent(Request $request)
+    {
+
+        $search_key = '%'.$request->get('search_key').'%';
+        $student = Student::where('first_name','like',$search_key)
+                        ->orWhere('middle_name','like',$search_key)
+                        ->orWhere('last_name','like',$search_key)
+                        ->orWhere('id', 'like', $search_key)
+                        ->orWhere('program', 'like', $search_key,'%')
+                        ->orWhere('admit_type', 'like', $search_key)
+                        ->orWhere('remarks', 'like', $search_key)
+                        ->orWhere('first_sem_cgpa', 'like', $search_key)
+                        ->paginate($this->student_per_page);
+
+       return view('student')->with(compact('student'),[
+          'has_student' => 'has_student'
+        ]);
+
+    }
+
+
     public function getViewStudentList()
     {
 
          $student = Student::orderBy('id', 'desc')->paginate($this->student_per_page);
 
-         return view('/student')->with(compact('student'), [
-
+         return view('student')->with(compact('student'), [
            'has_student' => 'has_student'
-
          ]);
     }
 
@@ -206,6 +237,88 @@ class StudentController extends Controller
         return response()->json([
             'data' => $program_population_counter
         ]);
+
+    }
+
+
+    public function getProgramClusterDistribution(Request $request)
+    {
+
+          $program = $request->get('program');
+          $program_cluster_distribution = array();
+          $counter_iterator = 0;
+
+          foreach ($this->cgpa_category as $cgpa_category)
+          {
+
+            $program_cluster_distribution[$counter_iterator] =
+            $cgpa_category.":".$this->program_remarks_counter($cgpa_category,$program);
+            $counter_iterator++;
+
+          }
+
+          return response()->json(['data' => $program_cluster_distribution]);
+
+    }
+
+    private function program_remarks_counter($cgpa_category,$program)
+    {
+        return
+
+        Student::where([
+                       'remarks' => $cgpa_category,
+                       'program' => $program
+                       ])->count();
+    }
+
+    private function determineRemarks($cgpa)
+    {
+
+           $remark_flag = 0;
+
+          if($cgpa >= '1.00' && $cgpa < '1.25')
+          {
+            $remark_flag = 0;
+          }
+          else if($cgpa >= '1.25' && $cgpa < '1.50')
+          {
+            $remark_flag = 1;
+          }
+          else if($cgpa >= '1.50' && $cgpa < '1.75')
+          {
+            $remark_flag = 2;
+          }
+          else if($cgpa >= '1.75' && $cgpa < '2.00')
+          {
+            $remark_flag = 3;
+          }
+          else if($cgpa >= '2.00' && $cgpa < '2.25')
+          {
+            $remark_flag = 4;
+          }
+          else if($cgpa >= '2.25' && $cgpa < '2.50')
+          {
+            $remark_flag = 5;
+          }
+          else if($cgpa >= '2.50' && $cgpa < '2.75')
+          {
+            $remark_flag = 6;
+          }
+          else if($cgpa >= '2.75' && $cgpa < '3.00')
+          {
+            $remark_flag = 7;
+          }
+          else if($cgpa == '3.00')
+          {
+            $remark_flag = 8;
+          }
+          else
+          {
+            $remark_flag = 9;
+          }
+
+
+          return $this->cgpa_category[$remark_flag];
 
     }
 

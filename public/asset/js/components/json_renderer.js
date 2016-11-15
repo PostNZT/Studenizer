@@ -4,7 +4,6 @@
 *@author: Nelmin Jay Magan Anoc
 */
 
-
 $(document).ready(function()
 {
 
@@ -89,7 +88,7 @@ $(document).ready(function()
         for(var i = 0; i < data.length; i++)
         {
 
-          background_color[i] = random_color_generator();
+          background_color[i] = "#65dc65";
 
         }
 
@@ -106,7 +105,7 @@ $(document).ready(function()
        for(var i = 0; i < data.length; i++)
        {
 
-         border_color[i] = random_color_generator();
+         border_color[i] = "#65dc65";
 
        }
 
@@ -185,5 +184,91 @@ $(document).ready(function()
 
   };
 
+  populate_frequency_table = function(frequency_route, table_body_element, table_headers, table_header_element)
+  {
+
+          var column_count = table_headers.length;
+          var table_header_labels = "";
+
+          for (var i = 0; i < column_count; i++)
+          {
+
+              var table_row_head = '';
+              var table_row_tail = '';
+
+              if(i == '0')
+              {
+                  table_row_head = '<tr>';
+
+              }else if(i+1 == column_count)
+              {
+                  table_row_tail = '</tr>';
+              }
+
+              table_header_labels = table_row_head+table_header_labels+'<th>'+table_headers[i]+'</th>'+table_row_tail;
+
+          }
+
+          $.getJSON(frequency_route,function(data)
+          {
+
+              var table_data = "";
+
+              for (var i = data.data.length-1; i > 0; i--)
+              {
+
+                  var split_data = data.data[i].split(":");
+                  var column_data = "";
+
+                  for(var x = 0 ; x < column_count ; x++)
+                  {
+                      column_data = column_data+"<td>"+split_data[x]+"</td>";
+                  }
+
+                  table_data = "<tr>"+column_data+"</tr>"+table_data;
+
+              }
+
+              $("#"+table_header_element).html(table_header_labels);
+              $("#"+table_body_element).html(table_data);
+
+
+          });
+
+  };
+
+  /*
+  * Specially configured functions will be here in short static functions
+  */
+
+  $("#program").change(function(){
+
+       var program = "program="+$("#program").val();
+
+       $.getJSON(cgpa_cluster_route+"", program, function(data)
+       {
+           $('#program_cluster_canvas').remove();
+           $('#cluster_chart_container').append(
+             '<canvas id="program_cluster_canvas"  height="200px" width="500px"></canvas>'
+           );
+           var chart = $("#program_cluster_canvas").get(0).getContext("2d");
+           var labels = extract_data_labels(data.data);
+           var data_content = extract_data_values(data.data);
+           var data_background = populate_background_color(data.data);
+           var data_border = populate_border_color(data.data);
+           var chart_type = "bar";
+
+           populate_data(
+             labels,
+             data_content,
+             data_background,
+             data_border,
+             chart,
+             chart_type
+           );
+           
+       });
+
+  });
 
 });

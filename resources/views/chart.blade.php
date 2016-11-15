@@ -6,6 +6,7 @@
 @endsection
 
 @section('extrajs')
+   <script>var cgpa_cluster_route = "{{ route('cluster_cgpa') }}";</script>
     <script type="text/javascript" src="{{ asset('asset/js/chart.min.js') }}"></script>
     <script src="{{ asset('asset/js/helpers/helper.js') }}"></script>
     <script src="{{ asset('asset/js/components/json_renderer.js') }}"></script>

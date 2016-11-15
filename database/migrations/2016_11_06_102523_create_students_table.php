@@ -21,10 +21,10 @@ class CreateStudentsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->date('birthday');
             $table->boolean('gender');
             $table->string('religion');
             $table->double('first_sem_cgpa');
+            $table->string('remarks');
             $table->string('admit_type');
             $table->integer('year_admitted');
             $table->string('term_admitted');

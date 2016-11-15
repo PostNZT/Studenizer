@@ -12,9 +12,11 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-11">
       <h4>&nbsp;<b>Program Cluster CGPA Distribution</b></h4>
-      <canvas id="program_cluster_canvas" height="300px" width="300px"></canvas>
+      <div class="row" id="cluster_chart_container" style="min-height:350px;">
+        <canvas id="program_cluster_canvas" height="150px" width="500px"></canvas>
+      </div>
     </div>
 </div>
 
@@ -23,8 +25,7 @@
 $(document).ready(function()
 {
     var program_list_route = "{{ route('program_list') }}";
-    program_list_option_render(program_list_route);
-    program_cluster_chart();
+    option_render(program_list_route,"program");
 
 });
 

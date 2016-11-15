@@ -1,10 +1,5 @@
 <?php
 
-/*
-*class that manipulates static data from an xml file
-*@author: Nelmin Jay Magan Anoc
-*/
-
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;

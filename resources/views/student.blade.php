@@ -12,9 +12,9 @@
         Students | <a href="{{ route('view_all_student') }}" class="btn btn-sm btn-success"> View All</a>
       </h4>
       <hr>
-      <form class="form form-horizontal" role="search">
+      <form class="form form-horizontal" role="search" method="get" action="{{ route('student_search') }}">
          <div class="input-group">
-             <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+             <input type="text" class="form-control" placeholder="Search" name="search_key" id="search_key" required="">
              <div class="input-group-btn">
                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
              </div>
@@ -22,10 +22,10 @@
        </form>
     </div><br>
     <div class="row">
-        @if(Request::url() == route('view_all_student'))
-            {{ $student->links() }}
+        @if(Request::url() == route('view_all_student') || Request::url() == route('student_search'))
+            {{ $student->appends(['search_key' => Request::get('search_key')])->links() }}
             @include('components.tables.student_table')
-            {{ $student->links() }}
+            {{ $student->appends(['search_key' => Request::get('search_key')])->links() }}
         @else
             <center>
               <h4 class="muted-text-search text-muted">
