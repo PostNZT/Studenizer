@@ -127,3 +127,8 @@ Route::get('/student/program/population' , [
     'uses' => 'StudentController@getCoursePopulation',
     'as' => 'course_population'
 ]);
+
+Route::get('/student/population', [
+  'uses' => 'StudentController@getStudentPopulation',
+  'as' => 'student_population'
+]);

@@ -36,7 +36,7 @@ class StaticDataController extends Controller
       public function getScholarshipList()
       {
 
-        return response()->json($this->load_xml_data()->scholarship_types);
+         return response()->json($this->load_xml_data()->scholarship_types);
 
       }
 

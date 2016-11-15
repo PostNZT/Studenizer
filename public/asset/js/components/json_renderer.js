@@ -5,8 +5,6 @@
 */
 
 
-
-
 $(document).ready(function()
 {
 
@@ -35,11 +33,16 @@ $(document).ready(function()
 
   };
 
-  extract_total_population = function(data)
+  extract_total_population = function(population_route, html_element)
   {
 
-      $("#total-population").html("&nbsp;&nbsp;&nbsp;&nbsp;Total Population : "+
-      "<strong>"+data.total_population+"</strong>");
+      $.getJSON(population_route,function(data)
+      {
+
+        $("#"+html_element).html("&nbsp;&nbsp;&nbsp;&nbsp;Total Population : "+
+        "<strong>"+data.data+"</strong>");
+
+      });
 
   };
 

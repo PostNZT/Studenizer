@@ -7,7 +7,6 @@
 
 @section('extrajs')
     <script type="text/javascript" src="{{ asset('asset/js/chart.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/canvasjs.min.js') }}"></script>
     <script src="{{ asset('asset/js/helpers/helper.js') }}"></script>
     <script src="{{ asset('asset/js/components/json_renderer.js') }}"></script>
 @endsection

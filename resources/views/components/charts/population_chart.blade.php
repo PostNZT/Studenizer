@@ -44,13 +44,15 @@
   $(document).ready(function ()
   {
 
-      var gender_pop_route = "{{ route('gender_population') }}";
-      var muslim_pop_route = "{{ route('muslim_population') }}";
-      var course_pop_route = "{{ route('course_population') }}";
-      var gender_pop_canvas = "population_gender_canvas";
-      var muslim_pop_canvas = "population_religion_canvas";
+      var gender_pop_route   = "{{ route('gender_population') }}";
+      var muslim_pop_route   = "{{ route('muslim_population') }}";
+      var course_pop_route   = "{{ route('course_population') }}";
+      var gender_pop_canvas  = "population_gender_canvas";
+      var muslim_pop_canvas  = "population_religion_canvas";
       var program_pop_canvas = "population_program_canvas";
+      var population_route = "{{ route('student_population') }}";
 
+      extract_total_population(population_route, "total-population");
       draw_chart(gender_pop_route, gender_pop_canvas, "bar");
       draw_chart(muslim_pop_route, muslim_pop_canvas, "bar");
       draw_chart(course_pop_route, program_pop_canvas, "bar");
