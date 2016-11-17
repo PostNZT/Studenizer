@@ -45,7 +45,7 @@ class StaticDataController extends Controller
       public function getProgramList()
       {
 
-          return response()->json($this->load_xml_data()->program_types);
+         return response()->json($this->load_xml_data()->program_types);
 
       }
 

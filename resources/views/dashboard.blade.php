@@ -10,8 +10,11 @@
     <div class="row">
         <div class="col-md-3">
           <div class="panel panel-default">
-              @include('includes.panels.student_panel')
+              @include('includes.panels.left_panel')
           </div>
+        </div>
+        <div class="col-md-9">
+              @include('components.tables.data_summary')
         </div>
     </div>
 @endsection
