@@ -2,10 +2,6 @@
 
 student record sorter and manager
 
-# TODO LIST
-
-1. Create Admin Page
-
 # DONE LIST
 
 1. Apply CGPA categorization
@@ -21,6 +17,9 @@ student record sorter and manager
 
 3. File input
 > + using csv or xls files
+
+4. Create Admin Page
+> + summary statistics
 
 # DEMO IMAGES
 
@@ -54,6 +53,12 @@ student record sorter and manager
 
 > <br>
 > <img height="300px" src="https://github.com/stinkymonkeyph/Studenizer/blob/master/demo/images/cgpa_cluster_chart.png"></img>
+> <br>
+
+## Dashboard
+
+> <br>
+> <img height="300px" src="https://github.com/stinkymonkeyph/Studenizer/blob/master/demo/images/dashboard.png"></img>
 > <br>
 
 # Another stinky repo here
