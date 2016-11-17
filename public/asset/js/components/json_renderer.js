@@ -191,7 +191,7 @@ $(document).ready(function()
 
               var table_data = "";
 
-              for (var i = data.data.length-1; i > 0; i--)
+              for (var i = data.data.length-1; i >= 0; i--)
               {
 
                   var split_data = data.data[i].split(":");

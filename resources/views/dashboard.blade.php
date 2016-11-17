@@ -4,6 +4,12 @@
   Studenizer | Dashboard
 @endsection
 
+@section('extrajs')
+  <script type="text/javascript" src="{{ asset('asset/js/chart.min.js') }}"></script>
+  <script src="{{ asset('asset/js/helpers/helper.js') }}"></script>
+  <script src="{{ asset('asset/js/components/json_renderer.js') }}"></script>
+@endsection
+
 @section('content')
     <h4>Dashboard</h4>
     <hr>

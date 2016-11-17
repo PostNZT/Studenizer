@@ -210,7 +210,8 @@ class StudentController extends Controller
 
     }
 
-    public function getCoursePopulation(){
+    public function getCoursePopulation()
+    {
 
 
         $program_population_counter = array();
@@ -219,7 +220,7 @@ class StudentController extends Controller
         foreach(StaticDataController::load_xml_data()->program_types->data as $program)
         {
 
-          $program = str_replace("and", "&", $program);
+          $program = str_replace("&", "and", $program);
           $count = Student::where(['program' =>$program])->count();
           $program_population_counter[$counter_iterator] = $program.' : '.$count;
           $counter_iterator++;
@@ -229,6 +230,23 @@ class StudentController extends Controller
         return response()->json([
             'data' => $program_population_counter
         ]);
+
+    }
+
+    public function getCGPAClusterPopulationDistribution()
+    {
+
+        $cgpa_category_distribution = array();
+        $counter_iterator = 0;
+
+        foreach (StaticDataController::load_xml_data()->cgpa_category->data as $cgpa_category)
+        {
+          $cgpa_category_distribution[$counter_iterator] =
+          $cgpa_category." : ".Student::where(['remarks' =>$cgpa_category])->count();
+          $counter_iterator++;
+        }
+
+        return response()->json(['data' => $cgpa_category_distribution]);
 
     }
 
@@ -281,6 +299,7 @@ class StudentController extends Controller
 
     private function program_remarks_counter($cgpa_category,$program)
     {
+    //    $program = str_replace("and", "&", $program);
 
         return
 

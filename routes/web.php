@@ -151,6 +151,12 @@ Route::get('/cgpa/cluster/count',[
     'as' => 'cgpa_cluster_count'
 ]);
 
+Route::get('/cgpa/category/distribution',[
+  'uses' => 'StudentController@getCGPAClusterPopulationDistribution',
+  'as' => 'cgpa_cluster_pop_count'
+]);
+
+
 Route::get('/dashboard', function()
 {
     if(Auth::check())
