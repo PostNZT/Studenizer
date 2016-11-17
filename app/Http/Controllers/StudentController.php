@@ -12,18 +12,7 @@ class StudentController extends Controller
 {
 
     private $student_per_page = 20;
-    private $cgpa_category = array(
-      'Excellent',
-      'Superior',
-      'Very Good',
-      'Good',
-      'Very Satisfactory',
-      'High Average',
-      'Average',
-      'Fair',
-      'Pass',
-      'Fail'
-      );
+
 
     private function addStudentHelper(Student $student,Request $request)
     {
@@ -51,6 +40,9 @@ class StudentController extends Controller
 
     public function postAddStudent(Request $request)
     {
+
+        if(!Auth::check())
+          return redirect()->back();
 
         $student = new Student();
         $student = $this->AddStudentHelper($student,$request);
@@ -160,7 +152,7 @@ class StudentController extends Controller
                         ->orWhere('middle_name','like',$search_key)
                         ->orWhere('last_name','like',$search_key)
                         ->orWhere('id', 'like', $search_key)
-                        ->orWhere('program', 'like', $search_key,'%')
+                        ->orWhere('program', 'like', $search_key)
                         ->orWhere('admit_type', 'like', $search_key)
                         ->orWhere('remarks', 'like', $search_key)
                         ->orWhere('first_sem_cgpa', 'like', $search_key)
@@ -248,7 +240,7 @@ class StudentController extends Controller
           $program_cluster_distribution = array();
           $counter_iterator = 0;
 
-          foreach ($this->cgpa_category as $cgpa_category)
+          foreach (StaticDataController::load_xml_data()->cgpa_category->data as $cgpa_category)
           {
 
             $program_cluster_distribution[$counter_iterator] =
@@ -261,20 +253,47 @@ class StudentController extends Controller
 
     }
 
+
+    public function getCGPAClusterDistribution(Request $request)
+    {
+
+        $cgpa_category = $request->get('category');
+        $cgpa_cluster_distribution = array();
+        $counter_iterator = 0;
+
+        foreach (StaticDataController::load_xml_data()->program_types->data as $program)
+        {
+
+            $count = $this->program_remarks_counter($cgpa_category,$program);
+
+            if($count != 0)
+            {
+              $cgpa_cluster_distribution[$counter_iterator] =
+              $program." : ".$count;
+              $counter_iterator++;
+            }
+
+        }
+
+        return response()->json(['data' => $cgpa_cluster_distribution]);
+    }
+
+
     private function program_remarks_counter($cgpa_category,$program)
     {
+
         return
 
         Student::where([
-                       'remarks' => $cgpa_category,
-                       'program' => $program
-                       ])->count();
+          'remarks' => $cgpa_category,
+          'program' => $program
+        ])->count();
     }
 
     private function determineRemarks($cgpa)
     {
 
-           $remark_flag = 0;
+          $remark_flag = 0;
 
           if($cgpa >= '1.00' && $cgpa < '1.25')
           {
@@ -318,7 +337,9 @@ class StudentController extends Controller
           }
 
 
-          return $this->cgpa_category[$remark_flag];
+          return StaticDataController::load_xml_data()
+                 ->cgpa_category
+                 ->data[$remark_flag];
 
     }
 

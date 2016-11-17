@@ -55,6 +55,10 @@
 
 .scrollable-chart-div-width{
   height:500px;
-  width: 1200px !important;
+  width: 100%;
   overflow-x: scroll !important;
+}
+
+.override-height{
+  height:300px !important;
 }

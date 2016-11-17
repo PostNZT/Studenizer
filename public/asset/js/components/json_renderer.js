@@ -116,6 +116,7 @@ $(document).ready(function()
    draw_chart = function(route, chart_canvas, chart_type)
    {
 
+
       $.getJSON(route, function(data)
       {
 
@@ -134,7 +135,10 @@ $(document).ready(function()
             chart_type
           );
 
+
       });
+
+
 
    };
 
@@ -156,33 +160,6 @@ $(document).ready(function()
   *Dynamic charts will be placed here
   */
 
-  program_cluster_chart = function()
-  {
-
-        var program_cluster_chart = document.getElementById("program_cluster_canvas").getContext("2d");
-        var program_cluster_labels = ['Outstanding','Poor'];
-        var program_cluster_data = [350,250];
-        var chart_type = 'bar';
-        var chart_background = [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-        ];
-
-        var chart_border = [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-        ];
-
-        populate_data(
-          program_cluster_labels,
-          program_cluster_data,
-          chart_background,
-          chart_border,
-          program_cluster_chart,
-          chart_type
-        );
-
-  };
 
   populate_frequency_table = function(frequency_route, table_body_element, table_headers, table_header_element)
   {
@@ -238,36 +215,88 @@ $(document).ready(function()
   };
 
   /*
-  * Specially configured functions will be here in short static functions
+  * Specially configured functions will be here in short static functions shits
+  * I shot the sheriff
   */
+
+  count_total_data = function(data)
+  {
+
+        var sum = 0;
+
+        for (var i = 0; i < data.length; i++) {
+          sum = sum+parseInt(data[i]);
+        }
+
+        return sum;
+  };
+
+
+  clear_canvas = function(canvas_element)
+  {
+
+     $('#'+canvas_element).remove();
+
+  };
+
+  append_canvas = function(parent_element, canvas_element, height, width)
+  {
+
+      $('#'+parent_element).append(
+           '<canvas id="'+canvas_element+'" '+
+           'height="'+height+'px" width="'+width+'px"></canvas>'
+      );
+
+  };
+
+  set_population_label = function(route,label_element,label,population)
+  {
+
+        $.getJSON(route, function(data)
+        {
+
+              var data_content = extract_data_values(data.data);
+              population = count_total_data(data_content);
+
+              $("#"+label_element).html(
+                    "<b>"+label+
+                    "</b><br> <i>Population : "+
+                    population+"</i>"
+              );
+
+         });
+
+  };
 
   $("#program").change(function(){
 
        var program = "program="+$("#program").val();
 
-       $.getJSON(cgpa_cluster_route+"", program, function(data)
+       if(program != 'program=select')
        {
-           $('#program_cluster_canvas').remove();
-           $('#cluster_chart_container').append(
-             '<canvas id="program_cluster_canvas"  height="200px" width="500px"></canvas>'
-           );
-           var chart = $("#program_cluster_canvas").get(0).getContext("2d");
-           var labels = extract_data_labels(data.data);
-           var data_content = extract_data_values(data.data);
-           var data_background = populate_background_color(data.data);
-           var data_border = populate_border_color(data.data);
-           var chart_type = "bar";
+            var route = cgpa_cluster_route+"?"+program;
+            clear_canvas("program_cluster_canvas");
+            append_canvas("cluster_chart_container","program_cluster_canvas","200","500");
+            draw_chart(route, "program_cluster_canvas", "bar");
+            set_population_label(route,"program-label-container",$("#program").val());
 
-           populate_data(
-             labels,
-             data_content,
-             data_background,
-             data_border,
-             chart,
-             chart_type
-           );
-           
-       });
+       }
+
+  });
+
+  $("#cgpa_category").change(function(){
+
+       var category = "category="+$("#cgpa_category").val();
+
+       if(category != 'category=select')
+       {
+          var route = cgpa_cluster_count_route+"?"+category;
+          clear_canvas("category_cluster_canvas");
+          append_canvas("cluster_chart_container","category_cluster_canvas","600","7000");
+          draw_chart(route, "category_cluster_canvas", "bar");
+          set_population_label(route,"category-label-container",$("#cgpa_category").val());
+
+      }
 
   });
 

@@ -15,7 +15,10 @@
     <div class="col-md-11">
       <h4>&nbsp;<b>Program Cluster CGPA Distribution</b></h4>
       <div class="row" id="cluster_chart_container" style="min-height:350px;">
-        <canvas id="program_cluster_canvas" height="150px" width="500px"></canvas>
+        <canvas id="program_cluster_canvas" height="150px" width="500px">
+
+        </canvas>
+        <center><h4 id="program-label-container"class="muted-text-search"><b>Select a program to view <br>cgpa category distribution in a program</b></h4></center>
       </div>
     </div>
 </div>

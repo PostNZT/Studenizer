@@ -3,7 +3,7 @@
 Route::get('/', function ()
 {
     if(Auth::check())
-      return view('student');
+    return view('student');
 
     return view('welcome');
 })->name('welcome_page');
@@ -31,11 +31,11 @@ Route::get('/charts/cgpa_cluster',function()
 Route::get('/student/add', function()
 {
   if(Auth::check())
-    return view('add_student');
+  return view('add_student');
 
-    return redirect()
-           ->route('welcome_page')
-           ->with(['message'=>'please login to add a student']);
+  return redirect()
+          ->route('welcome_page')
+          ->with(['message'=>'please login to add a student']);
 
 })->name('add_student');
 
@@ -77,15 +77,13 @@ Route::get('/logout',
 Route::post('/student/add',
 [
     'uses' => 'StudentController@postAddStudent',
-    'as' => 'add_student_post',
-    'middleware'=>'auth'
+    'as' => 'add_student_post'
 ]);
 
 Route::post('/student/add/file',
 [
     'uses' => 'StudentController@postAddBulkStudent',
-    'as' => 'add_student_bulk',
-    'middleware'=>'auth'
+    'as' => 'add_student_bulk'
 ]);
 
 Route::get('/student/view/all',[
@@ -138,8 +136,28 @@ Route::get('/student/search', [
      'as'   => 'student_search'
 ]);
 
-
 Route::get('/students/cluster/cgpa', [
      'uses' => 'StudentController@getProgramClusterDistribution',
      'as' => 'cluster_cgpa'
 ]);
+
+Route::get('/cgpa/category',[
+     'uses' => 'StaticDataController@getCGPACategory',
+     'as' => 'cgpa_category'
+]);
+
+Route::get('/cgpa/cluster/count',[
+    'uses' => 'StudentController@getCGPAClusterDistribution',
+    'as' => 'cgpa_cluster_count'
+]);
+
+Route::get('/dashboard', function()
+{
+    if(Auth::check())
+    return view('dashboard');
+
+    return redirect()
+           ->route('welcome_page')
+           ->with(['message'=>'please login to access the dashboard']);
+
+})->name('dashboard');

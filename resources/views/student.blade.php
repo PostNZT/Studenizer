@@ -22,6 +22,7 @@
        </form>
     </div><br>
     <div class="row">
+
         @if(Request::url() == route('view_all_student') || Request::url() == route('student_search'))
             {{ $student->appends(['search_key' => Request::get('search_key')])->links() }}
             @include('components.tables.student_table')
@@ -33,6 +34,7 @@
               </h4>
             </center>
         @endif
+
     </div>
   </div>
 @endsection

@@ -30,8 +30,8 @@
   </div>
 
   <div class="row scrollable-chart-div-width">
-    <div style="height:400px;width:4000px;">
-      <canvas id="population_program_canvas" height="700px;" width="4000px;"></canvas>
+    <div style="height:400px;width:7000px;">
+      <canvas id="population_program_canvas" height="600px;" width="7000px;"></canvas>
     </div>
   </div>
 
@@ -54,7 +54,8 @@
       draw_chart(gender_pop_route, gender_pop_canvas, "bar");
       draw_chart(muslim_pop_route, muslim_pop_canvas, "bar");
       draw_chart(course_pop_route, program_pop_canvas, "bar");
-
+      
+     /*
       var program_table_headers = ['program','population'];
       var program_frequency_route = course_pop_route;
       var program_table_body = "program_table_body";
@@ -65,7 +66,7 @@
         program_table_body,
         program_table_headers,
         program_table_head
-      );
+      );*/
 
   });
 

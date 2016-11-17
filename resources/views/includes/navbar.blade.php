@@ -17,7 +17,14 @@
           <li @if(Request::url() == route('student_page')) class="active" @endif >
             <a href="{{ route('student_page') }}"><span class="glyphicon glyphicon-user"></span> Students</a>
           </li>
-          <li class="dropdown">
+          <li
+                  @if(Request::url() == route('chart_page_population')
+                  ||  Request::url() == route('chart_page_program_cluster')
+                  ||  Request::url() == route('chart_page_cgpa_cluster'))
+                  class="dropdown active"
+                  @else class="dropdown"
+                  @endif
+           >
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <span class="glyphicon glyphicon-graph"></span> Charts <span class="caret"></span>
             </a>
@@ -30,15 +37,17 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
            @if(Auth::check())
-
-                <li    @if(Request::url() == route('add_student')) class="dropdown active"
-                       @else class="dropdown"
-                       @endif
+                <li
+                      @if(Request::url() == route('add_student')
+                      || Request::url() == route('dashboard'))
+                      class="dropdown active"
+                      @else class="dropdown"
+                      @endif
                 >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-king"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Dashboard</a></li>
+                  <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                   <li>
                     <a href="{{ route('add_student') }}">
                       <span class="glyphicon glyphicon-plus-sign"></span>

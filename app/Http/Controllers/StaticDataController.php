@@ -14,6 +14,13 @@ class StaticDataController extends Controller
 
       }
 
+      public function getCGPACategory()
+      {
+
+        return response()->json($this->load_xml_data()->cgpa_category);
+
+      }
+
       public function getAdmitTypes()
       {
 
