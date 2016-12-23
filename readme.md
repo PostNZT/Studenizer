@@ -42,4 +42,3 @@ student records manager template powered by laravel
 > <img height="300px" src="https://github.com/stinkymonkeyph/Studenizer/blob/master/demo/images/dashboard.png"></img>
 > <br>
 
-# Another stinky repo here
