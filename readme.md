@@ -1,25 +1,6 @@
 # Studenizer
 
-student record sorter and manager
-
-# DONE LIST
-
-1. Apply CGPA categorization
-> + OUTSTANDING
-> + SATISFACTORY
-> + GOOD
-> + FAILED
-
-2. Create Charts for
-> + no of male and female students
-> + CGPA statistics based on categorization
-> + based on their program cluster
-
-3. File input
-> + using csv or xls files
-
-4. Create Admin Page
-> + summary statistics
+student records manager template powered by laravel
 
 # DEMO IMAGES
 
